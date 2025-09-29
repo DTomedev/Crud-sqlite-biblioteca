@@ -14,17 +14,40 @@ CREATE TABLE IF NOT EXISTS  livros (
     disponivel TEXT     
     )
 """)
-
 #tabela pré-definida
 livros = [
     ("Dom Casmurro", "Machado de Assis", 1899, "Sim"),
     ("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, "Sim"),
     ("A Hora da Estrela", "Clarice Lispector", 1977, "Sim"),
 ]
-
 cursor.executemany("""
 INSERT INTO livros (titulo, autor, ano, disponivel)
 VALUES (?, ?, ?, ?)
 """, livros)
 
-conexao.commit()
+#Funções
+
+#Cadastrando livros
+def cadastrar_livro():
+    try:
+        titulo_livro = input("Digite o titulo do livro: ").strip().lower()
+        autor_livro = input("Digite o autor do livro: ").strip().lower()
+        while True:  
+            try:
+                ano_livro = int(input("Digite o ano de lançamento do livro: "))
+                break
+            except ValueError:
+                print("Por favor, Digite um número válido.⚠️")
+
+        cursor.execute("""
+        INSERT INTO livros (titulo, autor, ano, disponivel)
+        VALUES (?, ?, ?,"Sim")
+        """, (titulo_livro, autor_livro, ano_livro))
+
+        conexao.commit()
+        print("Livro Cadastrado com sucesso!✔")
+
+    except Exception as erro:
+        print("Erro ao cadastrar livro!⚠️")
+
+#
