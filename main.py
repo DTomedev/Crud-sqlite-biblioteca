@@ -14,5 +14,17 @@ CREATE TABLE IF NOT EXISTS  livros (
     disponivel TEXT     
     )
 """)
+
+#tabela pré-definida
+livros = [
+    ("Dom Casmurro", "Machado de Assis", 1899, "Sim"),
+    ("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, "Sim"),
+    ("A Hora da Estrela", "Clarice Lispector", 1977, "Sim"),
+]
+
+cursor.executemany("""
+INSERT INTO livros (titulo, autor, ano, disponivel)
+VALUES (?, ?, ?, ?)
+""", livros)
+
 conexao.commit()
-conexao.close()
