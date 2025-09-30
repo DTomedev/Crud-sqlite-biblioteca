@@ -15,15 +15,15 @@ CREATE TABLE IF NOT EXISTS  livros (
     )
 """)
 #tabela pré-definida
-livros = [
-    ("Dom Casmurro", "Machado de Assis", 1899, "Sim"),
-    ("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, "Sim"),
-    ("A Hora da Estrela", "Clarice Lispector", 1977, "Sim"),
-]
-cursor.executemany("""
-INSERT INTO livros (titulo, autor, ano, disponivel)
-VALUES (?, ?, ?, ?)
-""", livros)
+# livros = [
+#     ("Dom Casmurro", "Machado de Assis", 1899, "Sim"),
+#     ("O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, "Sim"),
+#     ("A Hora da Estrela", "Clarice Lispector", 1977, "Sim"),
+# ]
+# cursor.executemany("""
+# INSERT INTO livros (titulo, autor, ano, disponivel)
+# VALUES (?, ?, ?, ?)
+# """, livros)
 
 #Funções
 
@@ -103,3 +103,20 @@ def atualizar_disp():
         
 
 #Remover livro
+def remover_livro():
+    try:
+        id_livro = int(input("Digite o ID do livro que deseja deletar: "))
+        cursor.execute("DELETE FROM livros WHERE id = ?", (id_livro,)) 
+        conexao.commit()
+
+        #Verificar se o aluno foi mesmo deletado
+        if cursor.rowcount > 0:
+            print("Livro Removido com sucesso!")
+        else:
+            print("Nenhum livro cadastrado com o ID fornecido")
+    except Exception as erro:
+        print(f"Erro ao tentar excluir o livro: {erro}")
+    finally:
+        #Sempre fechar a conexao no final
+        if conexao:
+                conexao.close()
