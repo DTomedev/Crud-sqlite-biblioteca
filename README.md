@@ -25,6 +25,7 @@ Permite realizar operações básicas de CRUD (Create, Read, Update e Delete), c
 ## 📂 Estrutura do Projeto  
 
 biblioteca/
+
 │── main.py # Código principal do sistema
 
 │── biblioteca.db # Banco de dados SQLite (gerado automaticamente)
