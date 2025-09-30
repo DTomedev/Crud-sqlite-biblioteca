@@ -49,6 +49,8 @@ def cadastrar_livro():
 
     except Exception as erro:
         print("Erro ao cadastrar livro!⚠️")
+    finally:
+        conexao.close()
 
 #Listar Livros
 def listar_livros():
@@ -93,12 +95,13 @@ def atualizar_disp():
                 break
             else: 
                 print("Inválido!")
+        conexao.commit()
     except ValueError:
         print("⚠️ Digite um número válido para ID.")
     except Exception as erro:
         print("Erro ao atualizar disponibilidade: ", erro)
-
-        conexao.commit()
+    finally:
+        conexao.close()
 
         
 
@@ -117,9 +120,7 @@ def remover_livro():
     except Exception as erro:
         print(f"Erro ao tentar excluir o livro: {erro}")
     finally:
-        #Sempre fechar a conexao no final
-        if conexao:
-                conexao.close()
+        conexao.close()
 
 
 while True:
