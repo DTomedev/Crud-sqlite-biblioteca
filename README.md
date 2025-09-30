@@ -32,9 +32,6 @@ biblioteca/
 
 └── README.md # Documentação do projeto
 
-yaml
-Copiar código
-
 ---
 
 ## ⚙️ Como Executar  
