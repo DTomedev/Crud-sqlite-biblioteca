@@ -120,3 +120,31 @@ def remover_livro():
         #Sempre fechar a conexao no final
         if conexao:
                 conexao.close()
+
+
+while True:
+    print()
+    print("-"*30)
+    print("BIBLIOTECA")
+    print("1 - Listar livros")
+    print("2 - Cadastrar Livro")
+    print("3 - Atualizar Disponibilidade")
+    print("4 - Remover Livro")
+    print("5 - Sair")
+    print("-"*30)
+    opcao = input("Escolha uma opção: ")
+
+    if opcao == "1":
+        listar_livros()
+
+    elif opcao == "2":
+        cadastrar_livro()
+
+    elif opcao == "3":
+        atualizar_disp()
+
+    elif opcao == "4":
+        remover_livro()
+
+    elif opcao == "5":
+        break
