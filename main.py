@@ -99,6 +99,7 @@ def atualizar_disp():
         print("Erro ao atualizar disponibilidade: ", erro)
 
         conexao.commit()
+
         
 
-#
+#Remover livro
